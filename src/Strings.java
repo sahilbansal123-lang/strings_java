@@ -16,5 +16,15 @@ public class Strings {
         // CONCATENATION
         String new1 = str1 + " " + str;
         System.out.println(new1);
+        System.out.println(new1.length());
+
+        // Print character of specific index
+        System.out.println(new1.charAt(1));
+        // print all characters of the string
+        for (int i = 0; i < new1.length(); i++) {
+            System.out.println(new1.charAt(i));
+        }
+
+
     }
 }
