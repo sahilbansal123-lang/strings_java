@@ -1,5 +1,15 @@
+import java.util.Scanner;
+
 public class Strings {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        String str1 = "abcd";
+        String str = new String("abcd");
+
+        Scanner sc = new Scanner(System.in);
+        String str2 = sc.next(); // for printing single word
+        String str3 = sc.nextLine(); // for printing whole sentence
+        System.out.println(str2);
+        System.out.println(str3);
     }
 }
