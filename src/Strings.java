@@ -15,5 +15,6 @@ public class Strings {
 
         // CONCATENATION
         String new1 = str1 + " " + str;
+        System.out.println(new1);
     }
 }
