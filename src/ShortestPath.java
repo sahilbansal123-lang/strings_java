@@ -21,6 +21,8 @@ public class ShortestPath {
         return (float) Math.sqrt(X2 + Y2);
     }
 
+
+
     public static void main(String[] args) {
         String path = "WNEENESENNN";
         System.out.println(shortestPath(path));
