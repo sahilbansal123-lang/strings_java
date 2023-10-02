@@ -3,30 +3,33 @@ import java.util.Stack;
 public class ValidParanthesis {
 
     public static boolean validParanthesis(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '[') {
-                stack.push(s.charAt(i));
-            }
-            else {
-                if (stack.isEmpty()) {
-                    return false;
-                }
+        int balance = 0;
 
-                char top = stack.pop();
-                if (s.charAt(i) == '(' && top != ')') {
-                    return false;
-                } else if (s.charAt(i) == '[' && top != ']') {
-                    return false;
-                } else if (s.charAt(i) == '{' && top != '}') {
-                    return false;
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                balance++;
+            } else if (c == ')') {
+                balance--;
+                if (balance < 0) {
+                    return false; // More ')' than '(' encountered
+                }
+            }else if (c == '}') {
+                balance--;
+                if (balance < 0) {
+                    return false; // More ')' than '(' encountered
+                }
+            }else if (c == ']') {
+                balance--;
+                if (balance < 0) {
+                    return false; // More ')' than '(' encountered
                 }
             }
-            }
-        return stack.isEmpty();
+        }
+
+        return balance == 0;
     }
 
     public static void main(String[] args) {
-        System.out.println(validParanthesis("{{({}[[])}}"));
+        System.out.println(validParanthesis("((()))[]{)"));
     }
 }
