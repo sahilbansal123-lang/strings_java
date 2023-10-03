@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class PrintCountOfDuplicates {
 
+//                  TIME COMPLEXTY O(N)
     public static void duplicacy(String s) {       // Using MAP
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
@@ -22,10 +23,6 @@ public class PrintCountOfDuplicates {
         }
     }
 
-    public static void duplicates(String s)    // Using SORTING TECHNIQUES
-    {
-
-    }
 
     public static void main(String[] args) {
         String s = "geeksforgeeks";
