@@ -1,3 +1,4 @@
+import java.security.PublicKey;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -16,9 +17,14 @@ public class PrintCountOfDuplicates {
 
         for (Map.Entry<Character, Integer> entry : map.entrySet()) {
             if (entry.getValue() > 1) {
-                System.out.println(entry.getKey() + " , " + entry.getValue());
+                System.out.println(entry.getKey() + " , Count " + entry.getValue());
             }
         }
+    }
+
+    public static void duplicates(String s)    // Using SORTING TECHNIQUES
+    {
+
     }
 
     public static void main(String[] args) {
