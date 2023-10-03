@@ -1,6 +1,11 @@
 public class LongestCommonPrefix {
 
     public static String prefix(String[] strs) {
+
+        if (strs.length == 0 || strs == null) {
+            return null;
+        }
+
         String shortest = strs[0];
 
         // Shortest Length String
