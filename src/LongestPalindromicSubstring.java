@@ -15,7 +15,7 @@ public class LongestPalindromicSubstring {
                 end = i + (len) / 2;
             }
         }
-        return str.substring(start, end);
+        return str.substring(start, end+1);
     }
 
     public static int expandFromCenter(String str, int i, int j) {
@@ -23,10 +23,10 @@ public class LongestPalindromicSubstring {
             i--;
             j++;
         }
-        return j - 1 - 1;
+        return j - i - 1;
     }
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("abba"));
+        System.out.println(longestPalindrome("bb"));
     }
 }
