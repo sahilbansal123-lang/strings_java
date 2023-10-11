@@ -13,9 +13,9 @@ public class PalindromicSubsequence {
 
             return 0;
         }
-        if(i == j)
+        if(i == j) {
             return dp[i][j] = 1;
-
+        }
 
 
         else if(str.charAt(i) == str.charAt(j)){
