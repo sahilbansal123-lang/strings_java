@@ -21,62 +21,54 @@ public class SmallestWindowInSContainingAllCharactersOFP {
     public static String smallestWindow(String s, String p) {
         String ans = "";
         HashMap<Character, Integer> map1 = new HashMap<>();
-        for (int i = 0; i < p.length(); i++) {
-            char ch = p.charAt(i);
+        for (char ch : p.toCharArray()) {
             map1.put(ch, map1.getOrDefault(ch, 0) + 1);
         }
-        int i = -1;
-        int j = -1;
+        int i = 0;
+        int j = 0;
         int mct = 0;
         int dmct = p.length();
-        HashMap<Character, Integer> map2 = new HashMap<>();
+        HashMap<Character, Integer> map2 = new HashMap();
 
-        while (true) {
-            boolean f1 = false;
-            boolean f2 = false;
+        int minLength = Integer.MAX_VALUE;
 
+        while (i < s.length()) {
+            char ch = s.charAt(i);
+            map2.put(ch, map2.getOrDefault(ch, 0) + 1);
 
-            while (i < s.length()-1 && mct < dmct) {
-                i++;
-                char ch = s.charAt(i);
-                map2.put(ch, map2.getOrDefault(ch, 0) + 1);
-                if (map2.getOrDefault(ch, 0) <= map1.getOrDefault(ch, 0)) {
-                    mct++;
-                }
-
-                f1 = true;
+            if (map2.get(ch) <= map1.getOrDefault(ch, 0)) {
+                mct++;
             }
 
-            while(j < i && mct == dmct)  {
-                // store in ans
-                String pans = s.substring(j+1, i+1);
-
-                if (ans.length() == 0 ||  pans.length() < ans.length()) {
-                    ans = pans;
+            while (mct == dmct && j <= i) {
+                // Calculate the current window length
+                int currentLength = i - j + 1;
+                if (currentLength < minLength) {
+                    minLength = currentLength;
+                    ans = s.substring(j, i + 1);
                 }
-                // release the j
-                j++;
-                char ch = s.charAt(j);
-                if (map2.get(ch) == 1) {
-                    map2.remove(ch);
+
+                // Try to shrink the window from the left
+                char leftChar = s.charAt(j);
+                if (map2.get(leftChar) == 1) {
+                    map2.remove(leftChar);
                 } else {
-                    map2.put(ch, map2.get(ch)-1);
+                    map2.put(leftChar, map2.get(leftChar) - 1);
                 }
 
-                if (map2.getOrDefault(ch, 0) < map1.getOrDefault(ch, 0)) {
+                if (map2.getOrDefault(leftChar, 0) < map1.getOrDefault(leftChar, 0)) {
                     mct--;
                 }
 
-                f2 = true;
+                j++;
             }
 
-            if (f1 == false && f2 == false) {
-                break;
-            }
+            i++;
         }
-        
+
         return ans;
     }
+
 
     public static void main(String[] args) {
         String s = "timetopractice";
