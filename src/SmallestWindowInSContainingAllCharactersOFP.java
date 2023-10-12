@@ -68,6 +68,48 @@ public class SmallestWindowInSContainingAllCharactersOFP {
 
         return ans;
     }
+    public static String smallestWindowBetterVersion(String s, String p) {
+            int[] charCount = new int[256]; // Assuming ASCII characters
+
+            for (char ch : p.toCharArray()) {
+                charCount[ch]++;
+            }
+
+            int start = 0;
+            int end = 0;
+            int minLength = Integer.MAX_VALUE;
+            int minStart = 0;
+            int charCountToMatch = p.length();
+
+            while (end < s.length()) {
+                if (charCount[s.charAt(end)] > 0) {
+                    charCountToMatch--;
+                }
+                charCount[s.charAt(end)]--;
+
+                while (charCountToMatch == 0) {
+                    if (end - start < minLength) {
+                        minLength = end - start;
+                        minStart = start;
+                    }
+
+                    charCount[s.charAt(start)]++;
+                    if (charCount[s.charAt(start)] > 0) {
+                        charCountToMatch++;
+                    }
+
+                    start++;
+                }
+                end++;
+            }
+
+            if (minLength == Integer.MAX_VALUE) {
+                return "-1"; // No valid window found
+            }
+
+            return s.substring(minStart, minStart + minLength + 1);
+        }
+
 
 
     public static void main(String[] args) {
